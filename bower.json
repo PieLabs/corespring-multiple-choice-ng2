@@ -1,0 +1,23 @@
+{
+  "name": "corespring-multiple-choice",
+  "description": "a multiple choice component",
+  "main": "corespring-multiple-choice.html",
+  "keywords": [
+    "polymer",
+    "custom-element"
+  ],
+  "dependencies": {
+    "lodash": "^4.7.0"
+  },
+  "devDependencies": {},
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
