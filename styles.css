@@ -3,10 +3,70 @@ h1 {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 250%;
 }
+
 body {
     margin: 2em;
 }
 
-.demo-table td {
+td {
     vertical-align: top;
+}
+
+td.comp-cell {
+    width: 400px;
+}
+
+th {
+    text-align: left;
+    border-bottom: solid lightgrey 1px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+demo {
+    background-color: white;
+    display: inline-block;
+    border-radius: 12px;
+    box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+demo .md-checkbox-frame {
+    background-color: transparent;
+    border: 2px solid #a2d4f2;
+}
+
+demo .md-checkbox-checked .md-checkbox-background {
+    background-color: #a2d4f2;
+}
+
+demo .correct .md-checkbox-checked .md-checkbox-background {
+    background-color: #4caf50;
+}
+
+demo .incorrect .md-checkbox-checked .md-checkbox-background {
+    background-color: #ff9800;
+}
+
+demo .md-radio-inner-circle {
+    background-color: #a2d4f2;
+}
+
+demo .md-radio-outer-circle, demo .md-radio-checked .md-radio-outer-circle {
+    border-color: #a2d4f2;
+}
+
+demo .incorrect .md-radio-inner-circle {
+    background-color: #ff9800;
+}
+demo .incorrect.md-radio-checked .md-radio-outer-circle, demo .incorrect .md-radio-checked .md-radio-outer-circle {
+    border-color: #ff9800;
+}
+
+demo .correct .md-radio-inner-circle {
+    background-color: #4caf50;
+}
+demo .correct.md-radio-checked .md-radio-outer-circle, demo .correct .md-radio-checked .md-radio-outer-circle {
+    border-color: #4caf50;
 }

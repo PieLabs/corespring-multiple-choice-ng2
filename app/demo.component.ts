@@ -1,13 +1,9 @@
-import {Component, Input, OnInit, OnChanges, SimpleChange, DoCheck} from '@angular/core';
-import {Config} from './config';
-import {Outcomes} from './outcomes';
-import {Response} from './response';
-import * as _ from 'lodash';
-
+import {Component, Input} from '@angular/core';
 
 @Component({
   selector: 'demo',
   template: `
+    <h2>{{title}}</h2>
     <table class="demo-table">
       <tr>
         <th>comp</th>
@@ -16,7 +12,7 @@ import * as _ from 'lodash';
         <th>response</th>
       </tr>
       <tr>
-        <td><corespring-multiple-choice [config]="config" [response]="response"></corespring-multiple-choice></td>
+        <td style="min-width: 300px"><corespring-multiple-choice [config]="config" [outcomes]="outcomes" [response]="response"></corespring-multiple-choice></td>
         <td><pre>{{config | json}}</pre></td>
         <td><pre>{{outcomes | json}}</pre></td>
         <td><pre>{{response | json}}</pre></td>
@@ -26,32 +22,17 @@ import * as _ from 'lodash';
   `
 })
 
-export class DemoComponent implements OnInit, OnChanges, DoCheck {
+export class DemoComponent  {
   @Input()
   title: String;
 
   @Input()
-  config: Object;
+  config: any;
 
   @Input()
-  outcomes: Array<Object>;
+  outcomes: Array<any>;
 
   @Input()
   response: Array<String>;
-
-  choices: Array<Object>;
-  answer: String;
-
-  constructor() {
-  }
-
-  ngOnInit() {
-  };
-
-  ngOnChanges(changes: {[propertyName: string]: SimpleChange}) {
-  };
-
-  ngDoCheck() {
-  };
 
 }

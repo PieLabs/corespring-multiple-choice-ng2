@@ -8,6 +8,7 @@
     'app':                        'app', // 'dist',
     '@angular':                   'node_modules/@angular',
     'angular2-in-memory-web-api': 'node_modules/angular2-in-memory-web-api',
+    '@angular2-material':         'node_modules/@angular2-material',
     'rxjs':                       'node_modules/rxjs',
     'lodash':                     'node_modules/lodash/lodash.js'
   };
@@ -15,7 +16,7 @@
   var packages = {
     'app':                        { main: 'main.js',  defaultExtension: 'js' },
     'rxjs':                       { defaultExtension: 'js' },
-    'angular2-in-memory-web-api': { main: 'index.js', defaultExtension: 'js' },
+    'angular2-in-memory-web-api': { main: 'index.js', defaultExtension: 'js' }
   };
   var ngPackageNames = [
     'common',
@@ -29,6 +30,19 @@
     'router-deprecated',
     'upgrade',
   ];
+
+  const materialPkgs = [
+    'core',
+    'radio',
+    'checkbox'
+  ];
+
+  for (var p in materialPkgs) {
+    var pkg = materialPkgs[p];
+    packages['@angular2-material/'+pkg] = {main: pkg+'.js'};
+  };
+
+
   // Individual files (~300 requests):
   function packIndex(pkgName) {
     packages['@angular/'+pkgName] = { main: 'index.js', defaultExtension: 'js' };

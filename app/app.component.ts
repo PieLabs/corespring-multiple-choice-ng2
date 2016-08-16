@@ -1,16 +1,12 @@
 import {Component} from '@angular/core';
 
-import {Config} from './config';
-import {Outcomes} from "./outcomes";
-import {Response} from "./response";
-
 import * as _ from 'lodash';
 
 @Component({
   selector: 'my-app',
   template: `
     <h1>{{title}}</h1>
-    <demo *ngFor="let dd of demoDatas" [config]="dd.config" [outcomes]="dd.outcomes" [response]="dd.response"></demo>
+    <demo *ngFor="let dd of demoDatas" [title]="dd.title" [config]="dd.config" [outcomes]="dd.outcomes" [response]="dd.response"></demo>
   `
 })
 
@@ -19,9 +15,9 @@ export class AppComponent {
   title = 'Corespring Multiple Choice Example';
   demoDatas: Array<DemoData>;
 
-  private createConfig(prompt: String, overrides: Object) {
+  private createConfig(overrides: Object) {
     return _.assign({
-      prompt: prompt,
+      prompt: 'This is a prompt...',
       choiceMode: 'radio',
       keyMode: 'numbers',
       disabled: false,
@@ -37,11 +33,44 @@ export class AppComponent {
 
   constructor() {
     this.demoDatas = [
-      // new DemoData(this.createConfig('Radio example'), ['apple'], []),
-      // new DemoData(this.createConfig('Checkbox example', {choiceMode: 'checkbox'}), ['apple','banana'], []),
-      new DemoData(this.createConfig('With outcomes', {choiceMode: 'checkbox'}), ['apple','banana'], [
+      // new DemoData('Radio example', this.createConfig({}), ['apple'], []),
+      // new DemoData('Checkbox example', this.createConfig({choiceMode: 'checkbox'}), ['apple', 'banana'], []),
+      // new DemoData('With outcomes', this.createConfig({choiceMode: 'checkbox'}), ['apple', 'banana'], [
+      //   {value: 'apple', correct: true},
+      //   {value: 'banana', correct: false}
+      // ]),
+      new DemoData('Radio With outcomes and correct response', this.createConfig({
+        "correctResponse": [
+          "apple",
+        ]
+      }), ['banana'], [
+        {value: 'banana', correct: false}
+      ]),
+      new DemoData('With outcomes and correct response', this.createConfig({
+        choiceMode: 'checkbox', "correctResponse": [
+          "apple",
+          "carrot"
+        ]
+      }), ['apple', 'banana'], [
         {value: 'apple', correct: true},
         {value: 'banana', correct: false}
+      ]),
+      new DemoData('With outcomes+feedback and correct response', this.createConfig({
+        choiceMode: 'checkbox', "correctResponse": [
+          "apple",
+          "carrot"
+        ]
+      }), ['apple', 'banana'], [
+        {
+          "value": "apple",
+          "correct": true,
+          "feedback": "Apples are so tasty!"
+        },
+        {
+          "value": "banana",
+          "correct": false,
+          "feedback": "Ugh - mushy banana"
+        }
       ])
     ];
   }
@@ -49,10 +78,13 @@ export class AppComponent {
 
 
 class DemoData {
+  title: String;
   config: Object;
   response: Array<String>;
   outcomes: Array<Object>;
-  constructor(config:Object, response: Array<String>, outcomes: Array<Object>) {
+
+  constructor(title: string, config: Object, response: Array<string>, outcomes: Array<Object>) {
+    this.title = title;
     this.config = config;
     this.response = response;
     this.outcomes = outcomes;
